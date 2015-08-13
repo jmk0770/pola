@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>후기 게시판.</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    
+	<!-- 모달 -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	    
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="exampleModalLabel">회원 정보를 기입해주세요.</h4>
+	      </div>
+	      
+	      <div class="modal-body">
+	      	<div class="form-group">
+		  		<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+		  	</div>
+		  	<div class="form-group">
+		  		<input class="form-control" placeholder="Password" name="password" type="password" value="">
+		  	</div>				
+	      </div>
+	      <div class="modal-footer">	        
+	        <a href="index.html" class="btn btn-success btn-block">로그인</a>
+	      </div><!-- modal-body tag end -->      
+	    </div><!-- modal-content tag end -->
+	  </div><!-- modal-dialog tag end -->
+	</div>
+	
+	<!-- 모달 -->
+	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	    
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="exampleModalLabel">회원정보를 기입해주세요.</h4>
+	      </div>
+	      
+	      <div class="modal-body">
+	      	<div class="form-group">
+		  		<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+		  	</div>
+		  	<div class="form-group">
+		  		<input class="form-control" placeholder="Password" name="password" type="password" value="">
+		  	</div>				
+	      </div>
+	      <div class="modal-footer">	        
+	        <a href="index.html" class="btn btn-success btn-block">회원 가입</a>
+	      </div><!-- modal-body tag end -->      
+	    </div><!-- modal-content tag end -->
+	  </div><!-- modal-dialog tag end -->
+	</div>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- 현아꺼 -->
+    <style>
+	#layout,#photo,#profile,#name,#day,#title,#content,#link {margin: 0.5px;}
+	#search{height:500px; margin-bottom:150px; margin:0px auto;}
+	#header {height:350px; margin-bottom:100px; line-height:130px;  background-image: url("china1.jpg"); background-size:cover;}
+	#body {}
+	#nationName{font-size:50px; color:black;}
+	#time{margin-left:160px; position:relative;  height:80px; width:500px; background-color:black; margin-bottom:10px;}
+	#money{margin-left:160px; position:relative;  height:80px; width:500px; background-color:black;}
+	#function{height:30px; font-size:small; margin-left: 100px;}
+	#layout {width:900px; height:200px; margin-left: 100px;} 
+	#photo  {width:200px; height:200px; float:left;}
+	#profile{width:45px;  height:45px; float:left; padding-right:1.5px; padding-left:1.5px;}
+	#name	{width:450px; height:30px; float:left;} 
+	#day	{width:450px; height:15px; float:left; font-size:10px;}
+	#title	{width:600px; height:30px; float:left; font-size:18px; z-index: 100;}
+	#content{width:600px; height:80px; font-size:14px; float:left;}
+	#link	{width:600px; height:25px; float:left;}
+	#weather{position:relative; left:650px; top:-170px; height:170px; width:100px; background-color:black; margin-left:20px; margin-right:10px;}
+	#weather1{position:relative; left:750px; top:-340px; height:170px; width:100px; background-color:black;}
+	#weather2{position:relative; left:850px; top:-510px; height:170px; width:100px; background-color:black;}
+	#weather3{position:relative; left:950px; top:-680px; height:170px; width:100px; background-color:black;}
+	#weather4{position:relative; left:1050px; top:-850px; height:170px; width:100px; background-color:black;}
+	#text{color:white;}
+	
+	.img-circle{border-radius:50%;}
+	.info{ text-align:center; line-height:80px;  filter: alpha(opacity=40);}
+	
+	
+	</style>
+    
+   
+
+</head>
+
+<body >
+	
+    <!-- Navigation -->    
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i>  <span class="light">Start</span> Share My T-Story
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                    	<a href="#top"></a>
+           			</li>
+		            <li>
+		                <a class="page-scroll" href="../index.html#top">Home</a>
+		            </li>
+		            <li>
+		                <a class="page-scroll" href="../index.html#about">About</a>
+		            </li>
+		            <li>
+		                <a class="page-scroll" href="../index.html#services">Services</a>
+		            </li>
+		            <li>
+		                <a class="page-scroll" href="../index.html#ourStory">Our Story</a>
+		            </li>
+		            <li>
+		                <a class="page-scroll" href="../index.html#contact">Map</a>
+		            </li>
+		            <!-- Navigation -->
+				    <a id="menu-toggle" href="#" class="btn btn-light btn-lg toggle"><i class="fa fa-bars"></i></a>
+				    <nav id="sidebar-wrapper">
+				        <ul class="sidebar-nav">
+				            <a id="menu-close" href="#" class="btn btn-light btn-sm pull-right toggle"><i class="fa fa-times"></i></a>
+				            <li class="sidebar-brand">
+				            </li>
+				            <li>
+				                <a href="#" data-toggle="modal"  data-target="#loginModal" onclick = $("#menu-close").click();>로그인</a>
+				            </li>
+				            <li>
+				                <a href="#" data-toggle="modal"  data-target="#signUpModal" onclick = $("#menu-close").click();>회원가입</a>
+				            </li>
+				            <li>
+				                <a href="../page/myPageMain.html" >내정보 보기</a>
+				            </li>
+				            <li>
+				                <a href="../page/reviewBoard.html" >후기 게시판</a>
+				            </li>
+				            <li>
+				                <a href="../page/freeBoard.html" >자유 게시판</a>
+				            </li>
+				        </ul>
+				    </nav>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+	<div id="search">
+	<center><img src="../img/reviewBoard-img/travle.png"></center>
+	</div>
+	<div id="header">
+	  <div id="nationName"><center>중국, China</center></div>
+	    <div class="info">
+			  <div id="time">
+			  <span id="text">현지 시간 2015.07.30 (목) PM 03:32 / 시차 -1시간</span>
+			  </div>
+			  <div id="money">
+			  <span id="text">중국 CNY 1위안 = 대한민국 KRW 187.84원</span>
+			  </div>
+			  <div id="weather">
+			  <span id="text">7.30<br><img src="http://info.hanatour.com/img/common/weather/300.png"></span>
+			  </div>
+			  <div id="weather1">
+	      <span id="text">7.31<br><img src="http://info.hanatour.com/img/common/weather/110.png"></span>
+	      </div>
+	      <div id="weather2">
+	      <span id="text">8.1<br><img src="http://info.hanatour.com/img/common/weather/100.png"></span>
+	      </div>
+	      <div id="weather3">
+	      <span id="text">8.2<br><img src="http://info.hanatour.com/img/common/weather/100.png"></span>
+	      </div>
+	      <div id="weather4">
+	      <span id="text">8.3<br><img src="http://info.hanatour.com/img/common/weather/100.png"></span>
+	      </div>      
+	    </div>
+	</div>
+	<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+	<div id="function">
+	<b>#후기</b> 앨범형 게시판형 추천순 최신순
+	</div>
+	<div id="body">
+	  <div id="layout">
+			<div id="photo"><image src="../img/reviewBoard-img/1.jpg" width=195px height=195px> </div>
+			<div id="profile"><img class="img-circle" src="../img/reviewBoard-img/5.jpg" width=45px height=45px></div>
+			<div id="name">Sujin</div>
+			<div id="day">2015.05.07</div>
+			 <div id="title"> <a href="../project/latterpage.jsp"> [중국여행#04] 중국의 동쪽 끝 웨이하이 성산두 호운각 </a></div>
+			<div id="content">중국에서 가장 먼저 일출을 볼 수 있는 곳으로 알려진 성산두를 찾아갔습니다.
+			이곳은 중국 최동단에 위치해 있으며 거대한 해안절벽을 만날 수 있는 곳입니다.
+			참고로 중국에서도 가장 아름다운 8대 해안 중에 하나라고 합니다. 그래서 오전에 한번 가보았습니다. 듣던대로 너무 아름다운 곳이었습니다. 점심은 근처..</div>	
+			<div id="link"><img src="../img/reviewBoard-img/6.jpg"></div>
+		</div> <br>
+			
+		<div id="layout">
+			<div id="photo"><image src="../img/reviewBoard-img/2.jpg" width=195px height=195px> </div>
+			<div id="profile"><img class="img-circle" src="../img/reviewBoard-img/4.jpg" width=45px height=45px></div>
+			<div id="name">Sujin</div>
+			<div id="day">2015.05.07</div>
+			<div id="title">[중국여행#04] 중국의 동쪽 끝 웨이하이 성산두 호운각</div>	
+			<div id="content">중국에서 가장 먼저 일출을 볼 수 있는 곳으로 알려진 성산두를 찾아갔습니다.
+			이곳은 중국 최동단에 위치해 있으며 거대한 해안절벽을 만날 수 있는 곳입니다.
+			참고로 중국에서도 가장 아름다운 8대 해안 중에 하나라고 합니다. 그래서 오전에 한번 가보았습니다. 듣던대로 너무 아름다운 곳이었습니다. 점심은 근처..</div>
+		  <div id="link"><img src="../img/reviewBoard-img/6.jpg"></div>
+		</div> <br>
+			
+		<div id="layout">
+			<div id="photo"><image src="../img/reviewBoard-img/3.jpg" width=195px height=195px> </div>
+			<div id="profile"><img class="img-circle" src="../img/reviewBoard-img/1.jpg" width=45px height=45px></div>
+			<div id="name">Sujin</div>
+			<div id="day">2015.05.07</div>
+			<div id="title">[중국여행#04] 중국의 동쪽 끝 웨이하이 성산두 호운각</div>
+			<div id="content">중국에서 가장 먼저 일출을 볼 수 있는 곳으로 알려진 성산두를 찾아갔습니다.
+			이곳은 중국 최동단에 위치해 있으며 거대한 해안절벽을 만날 수 있는 곳입니다.
+			참고로 중국에서도 가장 아름다운 8대 해안 중에 하나라고 합니다. 그래서 오전에 한번 가보았습니다. 듣던대로 너무 아름다운 곳이었습니다. 점심은 근처..</div>
+			<div id="link"><img src="../img/reviewBoard-img/6.jpg"></div>
+		</div>
+	</div>
+    
+    
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+    
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+
+</body>
+</head>
+</html>
